@@ -57,9 +57,9 @@ class YetAnotherHandler(AbstractHandler):
 async def main():
     dp.start()
     
-    dp.commands.register(Command, YetAnotherHandler)
+    dp.commands.bind(Command, YetAnotherHandler)
     # or
-    # dp.commands.register(Command, YetAnotherHandler().handle)
+    # dp.commands.bind(Command, YetAnotherHandler().handle)
     # or
     # dp.register_command_handler(Command, YetAnotherHandler)
     # and decorator ofc... Choose your best way!
