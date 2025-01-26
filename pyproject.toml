@@ -1,13 +1,32 @@
 [project]
 name = "async-py-bus"
 version = "0.1.0"
-description = "Add your description here"
+description = "Async python message bus framework"
+authors = [{ "email" = "andrei.e.samofalov@gmail.com", "name" = "andrei samofalov" }]
 readme = "README.md"
 requires-python = ">=3.11"
+license = { "file" = 'MITLicense' }
 dependencies = []
 
 [dependency-groups]
 dev = [
+    "pytest-coverage>=0.0",
     "pytest>=8.3.4",
     "ruff>=0.9.2",
+    "isort>=5.13.2",
 ]
+
+[tool.coverage.report]
+exclude_also = [
+    "def __repr__",
+    "if settings.debug",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.isort]
+line_length = 88
+include_trailing_comma = true
+multi_line_output = 3
