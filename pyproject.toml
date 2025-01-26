@@ -1,6 +1,6 @@
 [project]
 name = "async-py-bus"
-version = "0.1.0"
+version = "0.1.2"
 description = "Async python message bus framework"
 authors = [{ "email" = "andrei.e.samofalov@gmail.com", "name" = "andrei samofalov" }]
 readme = "README.md"
