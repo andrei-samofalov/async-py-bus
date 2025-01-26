@@ -1,4 +1,6 @@
-from pybus.core.api.typing import MessageTypefrom pybus.core.api.typing import ReturnType
+### async-py-bus
+
+The library was written for async `edd` and `cqrs` python projects
 
 #### Basic usage
 
@@ -56,14 +58,14 @@ class YetAnotherHandler(AbstractHandler):
 
 async def main():
     dp.start()
-    
+
     dp.commands.bind(Command, YetAnotherHandler)
     # or
     # dp.commands.bind(Command, YetAnotherHandler().handle)
     # or
     # dp.register_command_handler(Command, YetAnotherHandler)
     # and decorator ofc... Choose your best way!
-    
+
     await dp.events.send(Event(name='someevent', somelogiccalue='emit'))
     await dp.commands.send(Command(dosomething=True))
 
