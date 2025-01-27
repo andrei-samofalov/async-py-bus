@@ -1,6 +1,6 @@
 ### async-py-bus
 
-The library was written for async `edd` and `cqrs` python projects
+The library is designed for async `event-driven` and `cqrs` python projects
 
 #### Basic usage
 
