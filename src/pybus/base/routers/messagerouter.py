@@ -1,7 +1,7 @@
 import abc
 import typing as t
 
-from pybus.base.handlers import HandlerWrapper
+from pybus.base.handlers.wrapper import HandlerWrapper
 from pybus.core.api.routers import AbstractMessageRouter
 from pybus.core.api.typing import EngineType, HandlerType, MessageType
 from pybus.core.inspection import sig

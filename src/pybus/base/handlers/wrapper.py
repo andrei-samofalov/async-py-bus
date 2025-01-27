@@ -1,36 +1,13 @@
-import abc
+import functools
 import inspect
 from logging import getLogger
 
 from pybus.core import helpers
-from pybus.core.api.handlers import AbstractHandler, AbstractHandlerWrapper
+from pybus.core.api.handlers import AbstractHandlerWrapper
 from pybus.core.api.typing import MessageType
 from pybus.core.types import EMPTY
 
 logger = getLogger(__name__)
-
-
-class PyBusAbstractHandler(AbstractHandler, metaclass=abc.ABCMeta):
-    """
-    PyBusHandler abstract base class.
-
-    To implement:
-      - handle
-
-    """
-
-    def __init__(self):
-        self._events = []
-
-    async def add_event(self, event: MessageType):
-        """Add event to emit later."""
-        self._events.append(event)
-
-    async def dump_events(self):
-        """Return list of collected events."""
-        events = self._events
-        self._events = []
-        return events
 
 
 class HandlerWrapper(AbstractHandlerWrapper):
@@ -43,7 +20,8 @@ class HandlerWrapper(AbstractHandlerWrapper):
 
     async def handle(self, message: MessageType):
         """Handle message."""
-        handler = self._handler.handle if hasattr(self._handler, 'handle') else self._handler
+        fn = self._handler.handle if hasattr(self._handler, 'handle') else self._handler
+        handler = functools.partial(fn, **self._initkwargs)
 
         if not self._inject:
             result = await handler()

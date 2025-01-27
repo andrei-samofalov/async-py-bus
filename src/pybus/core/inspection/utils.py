@@ -1,6 +1,7 @@
 import inspect
 from typing import Any
 
+from pybus.core.dependency.providers import Provider
 from pybus.core.types import ProtocolType
 
 isfun = inspect.isfunction
@@ -36,3 +37,15 @@ def implements_protocol(cls: Any, protocol: ProtocolType):
             return False
 
     return True
+
+
+def unpack_initkwargs(**initkwargs):
+    """Resolves dependency injections in initkwargs."""
+    result = {}
+    for name, value in initkwargs.items():
+        if issubclass(value, Provider):
+            value = value.call(name)
+
+        result[name] = value
+
+    return result

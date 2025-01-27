@@ -1,3 +1,7 @@
+import asyncio
+from concurrent.futures import Future
+
+
 def handler_repr(handler):  # pragma: no cover
     """Return a string representation of the given handler."""
     cls = (
@@ -20,3 +24,21 @@ def handler_repr(handler):  # pragma: no cover
             print(dir(handler))
 
     return handler_name
+
+
+def get_async_result(coro):
+    """Waits async results in sync environment, decorators f.e."""
+    loop = asyncio.get_event_loop()
+
+    if not loop.is_running():
+        return loop.run_until_complete(coro)
+
+    future = Future()
+
+    def _callback():
+        asyncio.ensure_future(coro).add_done_callback(
+            lambda task: future.set_result(task.result())
+        )
+
+    loop.call_soon_threadsafe(_callback)
+    return future.result()

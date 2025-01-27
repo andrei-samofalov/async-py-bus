@@ -22,6 +22,7 @@ class HandlerMetaData(NamedTuple):
     """Meta data for dispatcher"""
     handler: HandlerType
     inject: bool
+    initkwargs: dict = {}
     argname: Optional[str] = EMPTY
     message: Optional[Message] = EMPTY
 
@@ -36,9 +37,11 @@ def check_signature(
     if not handler:
         raise exc.HandlerDoesNotExist(pymessage=message)
 
+    initkwargs = utils.unpack_initkwargs(**initkwargs)
     cls = handler
     if inspect.isclass(handler):
         cls = handler(**initkwargs)
+        initkwargs = {}
         if utils.implements_protocol(cls, HandlerProtocol):
             handler = cls.handle
         else:
@@ -62,7 +65,10 @@ def check_signature(
         # 1: существуют ли вообще аргументы
         # - если нет, то это норм, просто заканчиваем проверку,
         # а сообщение в хэндлер не передаем
-        return HandlerMetaData(handler=handler, inject=False, message=message)
+        return HandlerMetaData(
+            handler=handler, inject=False,
+            message=message, initkwargs=initkwargs,
+        )
 
     error = exc.HandlerSignatureError(pymessage=message, handler=handler)
     reason = None
@@ -95,4 +101,7 @@ def check_signature(
     if is_valid is False:
         raise error.with_reason(reason=reason)
 
-    return HandlerMetaData(handler=cls, inject=True, argname=argname, message=message)
+    return HandlerMetaData(
+        handler=cls, inject=True, argname=argname,
+        message=message, initkwargs=initkwargs,
+    )

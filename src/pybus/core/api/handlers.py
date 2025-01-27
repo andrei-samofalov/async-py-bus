@@ -53,6 +53,7 @@ class AbstractHandlerWrapper(
         self._argname = meta.argname
 
         self._initkwargs = initkwargs
+        self._initkwargs.update(meta.initkwargs)
         self._events = []
 
 
@@ -60,5 +61,6 @@ class HandlerMetaDataProtocol(t.Protocol):
     """Meta data for dispatcher"""
     handler: HandlerType
     inject: bool
+    initkwargs: dict = {}
     argname: t.Optional[str] = EMPTY
     message: t.Optional[MessageType] = EMPTY

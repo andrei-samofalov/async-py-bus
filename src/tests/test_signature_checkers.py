@@ -64,7 +64,7 @@ async def handle(message: str):
 )
 def test_check_signature_fails(message, handler, argname, kind, exception):
     with pytest.raises(exception):
-        sig.check_signature(message, handler, argname, kind=kind)
+        sig.check_signature(handler, message, argname)
 
 
 @pytest.mark.parametrize(

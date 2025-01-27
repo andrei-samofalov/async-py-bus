@@ -87,7 +87,7 @@ class AbstractEngine(Generic[MessageMapType], metaclass=abc.ABCMeta):
     def setup_broker(self, broker: AbstractBrokerAdapter):
         """Setup broker loop."""
         if broker is None:
-            return logger.error('broker was not provided')
+            return
 
         self._broker = broker
         tasks = [self._broker_loop() for _ in range(broker.get_workers())]

@@ -1,6 +1,6 @@
 from typing import NamedTuple, Optional, TypeVar
 
-from pybus.base.handlers import HandlerWrapper
+from pybus.base.handlers.wrapper import HandlerWrapper
 from pybus.core.api.maps import AbstractHandlerMap
 from pybus.core.api.typing import (
     HandlerType,

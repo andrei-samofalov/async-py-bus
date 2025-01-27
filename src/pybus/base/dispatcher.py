@@ -1,7 +1,7 @@
 import typing as t
 from typing import Optional
 
-from pybus.base.handlers import HandlerWrapper
+from pybus.base.handlers.wrapper import HandlerWrapper
 from pybus.base.routers.eventrouter import EventRouter
 from pybus.base.routers.requestrouter import RequestRouter
 from pybus.core import exceptions as exc
@@ -30,10 +30,10 @@ class Dispatcher(DispatcherProtocol[EventRouter, RequestRouter, HandlerWrapper])
 
     @property
     def events(self):  # pragma: no cover
-        ...
+        return self._events
 
     @events.getter
-    def events(self) -> EventRouter:
+    def _(self) -> EventRouter:
         """Return events proxy"""
         if self._events is None:
             raise exc.ImproperlyConfigured(
@@ -43,10 +43,10 @@ class Dispatcher(DispatcherProtocol[EventRouter, RequestRouter, HandlerWrapper])
 
     @property
     def commands(self):  # pragma: no cover
-        ...
+        return self._commands
 
     @commands.getter
-    def commands(self) -> RequestRouter:
+    def _(self) -> RequestRouter:
         """Return commands proxy"""
         if self._commands is None:
             raise exc.ImproperlyConfigured(
@@ -56,10 +56,10 @@ class Dispatcher(DispatcherProtocol[EventRouter, RequestRouter, HandlerWrapper])
 
     @property
     def queries(self):  # pragma: no cover
-        ...
+        return self._queries
 
     @queries.getter
-    def queries(self) -> RequestRouter:
+    def _(self) -> RequestRouter:
         """Return queries proxy"""
         if self._queries is None:
             raise exc.ImproperlyConfigured(
