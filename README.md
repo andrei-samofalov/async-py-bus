@@ -4,7 +4,7 @@ The library is designed for async `event-driven` and `cqrs` python projects
 
 The docs is is being updated
 
-see [Full example](src/docs)
+see [Full example](src/docs/examples)
 
 #### Basic usage
 
