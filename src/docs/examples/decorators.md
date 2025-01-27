@@ -41,7 +41,7 @@ async def book_created_handler(event: BookCreated) -> None:
 
 
 @dp.queries.register(BookQuery, storage=Singleton["storage": get_storage])
-# ensure you did not reassigned the type of provider (f.e. from Singleton to Factory)
+# ensure you did not reassign the type of provider (f.e. from Singleton to Factory)
 async def book_query_handler(query: BookQuery, storage: dict) -> BookQueryResult:
     """Handle book query"""
     # find books in storage...
