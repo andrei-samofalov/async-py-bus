@@ -55,12 +55,21 @@ async def listen_query(event: BookQueryResult) -> None:
     print(f'query result: {event}')
 
 
+@dp.events.register('on startup')
+# # you can also use strings for message identifiers
+async def on_start() -> None:
+    """Handlers without message argument also can be used"""
+    # do something on startup
+    print('application started')
+
+
 async def main() -> None:
     """Application entrypoint"""
     logging.basicConfig(level=logging.DEBUG)
 
     dp.start()  # start router's engines
 
+    await dp.events.send('on startup')
     await dp.commands.send(
         CreateBook(title="Philosopher's Stone", author="J. K. Rowling", year=1997)
     )
