@@ -6,7 +6,7 @@ import logging
 from examples.books.messages import CreateBook, BookCreated, BookQuery, BookQueryResult
 from examples.books.models import Book
 from pybus import Dispatcher, RequestRouter
-from pybus.core.dependency.providers import Singleton, Factory
+from pybus.core.dependency.providers import Singleton
 
 dp = Dispatcher(
     queries_router_cls=RequestRouter,  # by default query router is disabled
@@ -40,7 +40,8 @@ async def book_created_handler(event: BookCreated) -> None:
     print(f'got event {event}')
 
 
-@dp.queries.register(BookQuery, storage=Factory["storage": get_storage])
+@dp.queries.register(BookQuery, storage=Singleton["storage": get_storage])
+# ensure you did not reassigned the type of provider (f.e. from Singleton to Factory)
 async def book_query_handler(query: BookQuery, storage: dict) -> BookQueryResult:
     """Handle book query"""
     # find books in storage...
