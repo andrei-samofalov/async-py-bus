@@ -2,6 +2,10 @@
 
 The library is designed for async `event-driven` and `cqrs` python projects
 
+The docs is is being updated
+
+see [Full example](src/docs)
+
 #### Basic usage
 
 ```python

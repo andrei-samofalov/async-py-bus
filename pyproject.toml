@@ -1,6 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "async-py-bus"
-version = "0.1.5"
+version = "0.1.6"
+authors = [
+    { "name" = "Andrei Samofalov", "email" = "andrei.e.samofalov@gmail.com" }
+]
+maintainers = [
+    { "name" = "Andrei Samofalov", "email" = "andrei.e.samofalov@gmail.com" }
+]
 description = "Async message bus framework designed for event-driven, cqrs python projects"
 keywords = [
     "python",
@@ -9,18 +19,19 @@ keywords = [
     "edd",
     "cqrs",
 ]
-authors = [{ "email" = "andrei.e.samofalov@gmail.com", "name" = "andrei samofalov" }]
-readme = "README.md"
-urls = { "guthub" = "https://github.com/andrei-samofalov/async-py-bus" }
-requires-python = ">=3.11"
-license = { "file" = 'MITLicense' }
-dependencies = []
 
-[tool.uv]
-package = true
+readme = "README.md"
+
+requires-python = ">=3.11"
+license-files = ['MITLicense']
+dependencies = []
 
 [project.scripts]
 readthedocs = "readthedocs:main"
+
+[project.urls]
+Repository = "https://github.com/andrei-samofalov/async-py-bus"
+Issues = "https://github.com/andrei-samofalov/async-py-bus/issues"
 
 [dependency-groups]
 dev = [
@@ -29,6 +40,12 @@ dev = [
     "ruff>=0.9.2",
     "isort>=5.13.2",
 ]
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pybus"]
 
 [tool.coverage.report]
 exclude_also = [
