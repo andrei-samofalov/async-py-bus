@@ -1,7 +1,7 @@
 [project]
 name = "async-py-bus"
-version = "0.1.3"
-description = "Python async message bus framework for event-driven-development, cqrs"
+version = "0.1.4"
+description = "Async message bus framework designed for event-driven, cqrs python projects"
 keywords = [
     "python",
     "async",
