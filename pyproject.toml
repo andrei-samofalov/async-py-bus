@@ -1,6 +1,6 @@
 [project]
 name = "async-py-bus"
-version = "0.1.4"
+version = "0.1.5"
 description = "Async message bus framework designed for event-driven, cqrs python projects"
 keywords = [
     "python",
@@ -11,9 +11,16 @@ keywords = [
 ]
 authors = [{ "email" = "andrei.e.samofalov@gmail.com", "name" = "andrei samofalov" }]
 readme = "README.md"
+urls = { "guthub" = "https://github.com/andrei-samofalov/async-py-bus" }
 requires-python = ">=3.11"
 license = { "file" = 'MITLicense' }
 dependencies = []
+
+[tool.uv]
+package = true
+
+[project.scripts]
+readthedocs = "readthedocs:main"
 
 [dependency-groups]
 dev = [
