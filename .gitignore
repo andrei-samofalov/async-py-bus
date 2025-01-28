@@ -9,3 +9,7 @@ wheels/
 # Virtual environments
 .venv
 uv.lock
+
+_build
+_static
+_templates

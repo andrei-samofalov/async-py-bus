@@ -1,10 +1,11 @@
 ### async-py-bus
 
-The library is designed for async `event-driven` and `cqrs` python projects
+The library is designed for async `event-driven` and `cqrs` python projects,
+has no third-party dependencies
 
-The docs is is being updated
+The docs are being updated
 
-see [Full example](src/docs/examples)
+see [Full example](docs/examples)
 
 #### Basic usage
 

@@ -8,7 +8,7 @@ if current_dir.name == 'src':
     current_dir = current_dir.parent
 
 examples_dir = current_dir / "src/examples"
-direction_dir = current_dir / "src/docs/examples"
+direction_dir = current_dir / "docs/examples"
 
 
 def git_add():
