@@ -20,7 +20,8 @@ from pybus import dispatcher as dp
 ```
 
 Note that the query engine is not enabled in the default implementation.
-Therefore, you need to instantiate the `Dispatcher` class with an additional parameter:
+Therefore, if your application uses queries you need to instantiate the `Dispatcher` class 
+with an additional parameter:
 
 ```python
 from pybus import Dispatcher, RequestRouter
