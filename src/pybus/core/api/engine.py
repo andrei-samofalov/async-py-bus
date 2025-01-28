@@ -62,7 +62,7 @@ class AbstractEngine(Generic[MessageMapType], metaclass=abc.ABCMeta):
                 break
 
             except Exception as e:
-                await self.handler_error(e)
+                await self.error_handler(e)
 
     async def _broker_loop(self) -> None:
         while True:
@@ -72,7 +72,7 @@ class AbstractEngine(Generic[MessageMapType], metaclass=abc.ABCMeta):
             except asyncio.CancelledError:
                 break
 
-    async def handler_error(self, error: str | Exception) -> None:  # noqa
+    async def error_handler(self, error: str | Exception) -> None:  # noqa
         """Error handler"""
         logger.exception(error)
 
