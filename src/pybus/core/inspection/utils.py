@@ -43,7 +43,7 @@ def unpack_initkwargs(**initkwargs):
     """Resolves dependency injections in initkwargs."""
     result = {}
     for name, value in initkwargs.items():
-        if issubclass(value, Provider):
+        if inspect.isclass(value) and issubclass(value, Provider):
             value = value.call(name)
 
         result[name] = value
