@@ -7,6 +7,7 @@ from pybus.base.maps import EventHandlerMap as EventHandlerMap
 from pybus.base.maps import RequestHandlerMap as RequestHandlerMap
 from pybus.base.routers.eventrouter import EventRouter as EventRouter
 from pybus.base.routers.requestrouter import RequestRouter as RequestRouter
+from pybus.core.dependency.providers import Singleton as Singleton, Factory as Factory
 
 __all__ = [
     "AbstractHandler",
@@ -14,8 +15,10 @@ __all__ = [
     "EventHandlerMap",
     "EventEngine",
     "EventRouter",
+    "Factory",
     "RequestHandlerMap",
     "RequestEngine",
     "RequestRouter",
+    "Singleton",
     "dispatcher",
 ]

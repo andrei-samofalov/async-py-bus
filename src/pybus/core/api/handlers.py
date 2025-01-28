@@ -9,7 +9,7 @@ from pybus.core.types import EMPTY
 class HandlerProtocol(t.Protocol):
     """Handler protocol for runtime checking."""
 
-    async def handle(self, message: MessageType) -> ReturnType:
+    async def handle(self, message: MessageType, **kwargs) -> ReturnType:
         """Handle message."""
 
     async def add_event(self, event: MessageType) -> None:
