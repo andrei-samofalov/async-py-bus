@@ -1,7 +1,7 @@
 # async-py-bus
 
 The library is designed for asynchronous `event-driven` and `cqrs` Python projects,
-has no third-party dependencies, and is useful for handling domain events, queries, and commands.
+has no third-party dependencies, and is useful for handling domain events, queries and commands.
 
 See [more examples](https://github.com/andrei-samofalov/async-py-bus/tree/master/docs/examples) on
 GitHub
@@ -9,7 +9,7 @@ GitHub
 ## Basic usage
 
 The core of the library is the `Dispatcher` class.
-It handles three types of messages: `events`, `commands`, and `queries`.
+It handles three types of messages: `events`, `commands` and `queries`.
 
 ### Dispatcher initializing
 
@@ -36,12 +36,10 @@ A basic handler is an asynchronous function that takes either one or zero argume
 
 ```python
 async def handler_with_arg(event: EventType):
-
-
-# do something with event...
+    # do something with event...
 
 async def handler_without_arg():
-# do something
+    # do something
 ```
 
 Additionally, a handler can accept any number of keyword arguments (how to pass them to the handler
@@ -50,7 +48,7 @@ you must specify the `argname` parameter when registering the handler.
 
 A handler can also be a class implementing the `HandlerProtocol` protocol or
 an asynchronous `__call__` method.
-The signature rules for the `handle` or `call` methods are the same as for a regular function.
+The signature rules for the `handle` or `__call__` methods are the same as for a regular function.
 
 ```python
 class HandlerProtocol(Protocol):
@@ -98,11 +96,8 @@ You may notice that both the `create_user_handler` function and the `__call__` m
 the `CustomHandler` class return an event.
 This allows you to pass new outgoing events to the dispatcher, which will forward them
 to the appropriate handler.
-In the case of a class implementing `HandlerProtocol`, events are added during processing
-inside the `handle` method.
-
-The difference is that in the first case, only one event is available, while in the second case,
-you can add as many events as needed during the execution of `handle`.
+In the case of a class implementing `HandlerProtocol`, additionally events can be added during 
+processing inside the `handle` method.
 
 ### Handlers binding
 
@@ -136,7 +131,7 @@ dp.start()
 ```
 
 During this operation, the handler map will be finalized,
-and you won’t be able to register new handlers at runtime. Please keep this in mind.
+and you won’t be able to register new handlers. Please keep this in mind.
 
 ### Utils
 
