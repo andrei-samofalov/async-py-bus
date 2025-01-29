@@ -6,6 +6,7 @@ import logging
 from examples.books.messages import CreateBook, BookCreated, BookQuery, BookQueryResult
 from examples.books.models import Book
 from pybus import Dispatcher, RequestRouter
+from pybus.core import signals
 from pybus.core.dependency.providers import Singleton
 
 dp = Dispatcher(
@@ -78,7 +79,7 @@ async def main() -> None:
         BookQuery(title="Philosopher's Stone")
     )
 
-    await asyncio.sleep(0.1)  # give app some time to proceed
+    await signals.wait_for_shutdown()
 
 
 if __name__ == '__main__':

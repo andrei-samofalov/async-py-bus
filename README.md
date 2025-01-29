@@ -19,15 +19,27 @@ You can use the default object from `pybus`
 from pybus import dispatcher as dp
 ```
 
-Note that the query engine is not enabled in the default implementation.
-Therefore, if your application uses queries you need to instantiate the `Dispatcher` class 
-with an additional parameter:
+Note that the event, command and query engines are not enabled by default.
+Each of them would be instantiated with default routers (if not passed specific class) 
+with the first handler registered to this router.
 
+You can also override default engines, routers and dispatcher and pass your classes 
+to the Dispatcher constructor: 
 ```python
 from pybus import Dispatcher, RequestRouter
 
+class CustomRequestRouter(RequestRouter):
+  def bind(
+        self,
+        message: MessageType,
+        handler: HandlerType,
+        argname: t.Optional[str] = EMPTY,
+        **initkwargs,
+    ) -> PyBusWrappedHandler:
+        # your implementation here
+
 dp = Dispatcher(
-    queries_router_cls=RequestRouter,
+    queries_router_cls=CustomRequestRouter,
 )
 ```
 
@@ -133,6 +145,8 @@ dp.start()
 
 During this operation, the handler map will be finalized,
 and you won’t be able to register new handlers. Please keep this in mind.
+
+If no handlers registered dispatcher will drop setup.
 
 ### Utils
 
